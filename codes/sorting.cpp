@@ -96,3 +96,13 @@ std::vector<int> & merge_(std::vector<int> & a, int p, int q, int r){
         a[k++] = ar[j++];
     return a;
 }
+//冒泡排序
+std::vector<int> & bubble_sort(std::vector<int> & s){
+    for(int i = 0; i < s.size() - 1; ++i){
+        for(int j = s.size() - 1; j >= i + 1; --j){
+            if(s[j] < s[j - 1])
+                std::swap(s[j], s[j - 1]);
+        }
+    }
+    return s;
+}
