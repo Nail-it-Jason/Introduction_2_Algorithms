@@ -106,3 +106,74 @@ std::vector<int> & bubble_sort(std::vector<int> & s){
     }
     return s;
 }
+
+// 堆排序
+// 最大化堆
+void max_heapify(std::vector<int> & A, int i, int n){
+    int l = lchild(i), r = rchild(i);
+    int largest;
+    if(l < n && A[l] > A[i]){
+        largest = l;
+    } else {
+        largest = i;
+    }
+    if(r < n && A[r] > A[largest]){
+        largest = r;
+    }
+    if(i != largest){
+        std::swap(A[i], A[largest]);
+        max_heapify(A, largest, n);
+    }
+}
+
+// 建堆
+void build_max_heap(std::vector<int> & A){
+    int n = parent(A.size() - 1);
+    for(; n >= 0; --n)
+        max_heapify(A, n, A.size());
+}
+// 排序
+void heap_sort(std::vector<int> & A){
+    build_max_heap(A);
+    for(int i = A.size() - 1; i >= 1; --i){
+        std::swap(A[i], A[0]);
+        max_heapify(A, 0, i);
+    }
+}
+
+// 使用循环结构取代递归，来自习题6.2-5
+void max_heapify_loop(std::vector<int> & A, int i, int n){
+    int l, r;
+    int largest;
+    while (1){
+        l = lchild(i);
+        r = rchild(i);
+        if(l < n && A[l] > A[i])
+            largest = l;
+        else
+            largest = i;
+        if(r < n && A[r] > A[largest])
+            largest = r;
+        if(i != largest){
+            std::swap(A[i], A[largest]);
+            i = largest;
+        } else break;
+    }
+}
+// 维护最小堆，来自习题6.2-2
+void min_heapify(std::vector<int> & A, int i, int n){
+    int l = lchild(i), r = rchild(i);
+    int least;
+    if(l < n && A[l] < A[i]){
+        least = l;
+    } else {
+        least = i;
+    }
+    if(r < n && A[r] < A[least]){
+        least = r;
+    }
+    if(i != least){
+        std::swap(A[i], A[least]);
+        min_heapify(A, least, n);
+    }
+}
