@@ -19,4 +19,7 @@ void min_heapify(std::vector<int> & A, int i, int n);
 void max_heapify_loop(std::vector<int> & A, int i, int n);
 void build_max_heap(std::vector<int> & A);
 void heap_sort(std::vector<int> & A);
+
+int partition(std::vector<int> & A, int p, int r);
+void quick_sort(std::vector<int> & A, int p, int r);
 #endif
